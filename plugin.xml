@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
+      <classpathContainerInitializer
+          id="com.nomagic.magicdraw.CLASSPATH_LIB_CONTAINER"
+          class="com.nomagic.magicdraw.classpath.MDClasspathContainerInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.jdt.ui.classpathContainerPage">
+      <classpathContainerPage
+          id="com.nomagic.magicdraw.CLASSPATH_LIB_CONTAINER"
+          name="MagicDraw Classpath Container"
+          class="com.nomagic.magicdraw.classpath.MDClasspathContainerPage"/>
+   </extension>
+   <extension point="org.eclipse.jdt.core.classpathVariableInitializer">
+         <classpathVariableInitializer
+         	class="com.nomagic.magicdraw.classpath.MDVariableInitializer"
+         	readOnly="false"
+         	variable="MD"/>
+   </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.nomagic.magicdraw.classpath.preferences.MDPreferencePage"
+            id="com.nomagic.magicdraw.classpath.preferences.MDPreferencePage"
+            name="MagicDraw Installation">
+      </page>
+   </extension>
+   <extension point="org.eclipse.core.resources.natures"
+         id="com.nomagic.magicdraw.classpath.DocGenScriptProjectNature"
+         name="MagicDraw DocGen Script Project Nature">
+      <runtime>
+         <run class="com.nomagic.magicdraw.classpath.DocGenScriptProjectNature"/>
+      </runtime>
+   </extension>
+   <extension point="org.eclipse.core.resources.natures"
+         id="com.nomagic.magicdraw.classpath.MDKScriptProjectNature"
+         name="JPL MagicDraw mdk.scripts Project Nature">
+      <runtime>
+         <run class="com.nomagic.magicdraw.classpath.MDKScriptProjectNature"/>
+      </runtime>
+   </extension>
+   <extension point="org.eclipse.core.resources.natures"
+         id="com.nomagic.magicdraw.classpath.MagicDrawPluginProjectNature"
+         name="JPL MagicDraw Plugin Project Nature">
+      <runtime>
+         <run class="com.nomagic.magicdraw.classpath.MagicDrawPluginProjectNature"/>
+      </runtime>
+   </extension>
+   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="com.nomagic.magicdraw.classpath.MDKProjectPropertyTester"
+            id="com.nomagic.magicdraw.classpath.MDKProjectPropertyTester"
+            namespace="com.nomagic.magicdraw.classpath.project"
+            properties="workspaceProject,workspaceDocGenScriptLocation,workspaceMDKScriptLocation,workspaceMagicDrawPluginLocation,mdDocGenScriptLocation,mdMDKScriptLocation,mdMagicDrawPluginLocation,otherDocGenScriptLocation,otherMDKScriptLocation,otherMagicDrawPluginLocation"
+            type="org.eclipse.core.resources.IProject">
+      </propertyTester>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+      <category
+            id="com.nomagic.magicdraw.classpath.category"
+            name="JPL MagicDraw Commands">
+      </category>
+      <command
+            categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Add MagicDraw DocGen Script Project Nature"
+            id="com.nomagic.magicdraw.classpath.project.AddDocGenScriptNatureCommand"
+            name="Add MagicDraw DocGen Script Project Nature">
+      </command>
+      <command
+            categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Remove MagicDraw DocGen Script Project Nature"
+            id="com.nomagic.magicdraw.classpath.project.RemoveDocGenScriptNatureCommand"
+            name="Remove MagicDraw DocGen Script Project Nature">
+      </command>
+      <command
+            categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Add MagicDraw MDK Script Project Nature"
+            id="com.nomagic.magicdraw.classpath.project.AddMDKScriptNatureCommand"
+            name="Add MagicDraw MDK Script Project Nature">
+      </command>
+      <command
+            categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Remove MagicDraw MDK Script Project Nature"
+            id="com.nomagic.magicdraw.classpath.project.RemoveMDKScriptNatureCommand"
+            name="Remove MagicDraw MDK Script Project Nature">
+      </command>
+      <command
+            categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Add MagicDraw Plugin Project Nature"
+            id="com.nomagic.magicdraw.classpath.project.AddMagicDrawPluginNatureCommand"
+            name="Add MagicDraw Plugin Project Nature">
+      </command>
+      <command
+            categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Remove MagicDraw Plugin Project Nature"
+            id="com.nomagic.magicdraw.classpath.project.RemoveMagicDrawPluginNatureCommand"
+            name="Remove MagicDraw Plugin Project Nature">
+      </command>
+      <command
+      		categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Move project to MagicDraw's installation DocGenScripts folder"
+            id="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationDocGenScriptsFolder"
+            name="Move project to MagicDraw's installation DocGenScripts folder">
+      </command>
+      <command
+      		categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Move project to MagicDraw's installation mdk.scripts folder"
+            id="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMDKScriptsFolder"
+            name="Move project to MagicDraw's installation mdk.scripts folder">
+      </command>
+      <command
+      		categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Move project to MagicDraw's installation plugins folder"
+            id="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMagicDrawPluginsFolder"
+            name="Move project to MagicDraw's installation plugins folder">
+      </command>
+      <command
+      		categoryId="com.nomagic.magicdraw.classpath.category"
+            description="Move project back to the default Eclipse Workspace location"
+            id="com.nomagic.magicdraw.classpath.MDKProject.moveToDefaultWorkspaceLocation"
+            name="Move project back to the default Eclipse Workspace location">
+      </command>
+    </extension>
+
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.AddDocGenScriptNatureActionHandler"
+            commandId="com.nomagic.magicdraw.classpath.project.AddDocGenScriptNatureCommand">
+      </handler>
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.RemoveDocGenScriptNatureActionHandler"
+            commandId="com.nomagic.magicdraw.classpath.project.RemoveDocGenScriptNatureCommand">
+      </handler>    
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.AddMDKScriptNatureActionHandler"
+            commandId="com.nomagic.magicdraw.classpath.project.AddMDKScriptNatureCommand">
+      </handler>
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.RemoveMDKScriptNatureActionHandler"
+            commandId="com.nomagic.magicdraw.classpath.project.RemoveMDKScriptNatureCommand">
+      </handler>
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.AddMagicDrawPluginNatureActionHandler"
+            commandId="com.nomagic.magicdraw.classpath.project.AddMagicDrawPluginNatureCommand">
+      </handler>
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.RemoveMagicDrawPluginNatureActionHandler"
+            commandId="com.nomagic.magicdraw.classpath.project.RemoveMagicDrawPluginNatureCommand">
+      </handler>    
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.MoveToMDInstallationDocGenScriptsFolderHandler"
+            commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationDocGenScriptsFolder">
+      </handler>
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.MoveToMDInstallationMDKScriptsFolderHandler"
+            commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMDKScriptsFolder">
+      </handler>
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.MoveToMDInstallationMagicDrawPluginsFolderHandler"
+            commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMagicDrawPluginsFolder">
+      </handler>    
+      <handler
+            class="com.nomagic.magicdraw.classpath.handlers.MoveToDefaultWorkspaceLocationHandler"
+            commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToDefaultWorkspaceLocation">
+      </handler>
+   </extension>
+   <extension point="org.eclipse.core.expressions.definitions">
+       <definition id="com.nomagic.magicdraw.classpath.DocGenScriptProject">
+          <iterate ifEmpty="false" operator="or">
+             <adapt type="org.eclipse.core.resources.IProject">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.core.resources.projectNature"
+                      value="com.nomagic.magicdraw.classpath.DocGenProjectNature">
+                </test>
+             </adapt>
+          </iterate>
+       </definition>
+       <definition id="com.nomagic.magicdraw.classpath.MDKScriptProject">
+          <iterate ifEmpty="false" operator="or">
+             <adapt type="org.eclipse.core.resources.IProject">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.core.resources.projectNature"
+                      value="com.nomagic.magicdraw.classpath.MDKScriptProjectNature">
+                </test>
+             </adapt>
+          </iterate>
+       </definition>
+       <definition id="com.nomagic.magicdraw.classpath.MagicDrawPluginProject">
+          <iterate ifEmpty="false" operator="or">
+             <adapt type="org.eclipse.core.resources.IProject">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.core.resources.projectNature"
+                      value="com.nomagic.magicdraw.classpath.MagicDrawPluginProjectNature">
+                </test>
+             </adapt>
+          </iterate>
+       </definition>
+   </extension> 
+   <extension point="org.eclipse.ui.menus">
+   		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
+   			<menu label="MDK">
+	      		<command commandId="com.nomagic.magicdraw.classpath.project.AddDocGenScriptNatureCommand">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		                  			<test
+		                        			forcePluginActivation="true"
+		                        			property="com.nomagic.magicdraw.classpath.project.workspaceProject">
+		                  			</test>
+		               			</adapt>
+		               		</iterate>
+	            			</with>
+	      			</visibleWhen>
+	      		</command>
+	      		<command commandId="com.nomagic.magicdraw.classpath.project.RemoveDocGenScriptNatureCommand">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		                				<test
+					                    forcePluginActivation="true"
+					                    	property="com.nomagic.magicdraw.classpath.project.workspaceDocGenScriptLocation"/>
+		             			</adapt>
+		               		</iterate>
+	               		</with>
+	      			</visibleWhen>
+	      		</command>
+	      		<command commandId="com.nomagic.magicdraw.classpath.project.AddMDKScriptNatureCommand">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		                  			<test
+		                        			forcePluginActivation="true"
+		                        			property="com.nomagic.magicdraw.classpath.project.workspaceProject">
+		                  			</test>
+		               			</adapt>
+		               		</iterate>
+	            			</with>
+	      			</visibleWhen>
+	      		</command>
+	      		<command commandId="com.nomagic.magicdraw.classpath.project.RemoveMDKScriptNatureCommand">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		                				<test
+				                     	forcePluginActivation="true"
+				                    		property="com.nomagic.magicdraw.classpath.project.workspaceMDKScriptLocation"/>
+		             			</adapt>
+		               		</iterate>
+	               		</with>
+	      			</visibleWhen>
+	      		</command>
+	      		<command commandId="com.nomagic.magicdraw.classpath.project.AddMagicDrawPluginNatureCommand">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		                  			<test
+		                        			forcePluginActivation="true"
+		                        			property="com.nomagic.magicdraw.classpath.project.workspaceProject">
+		                  			</test>
+		               			</adapt>
+		               		</iterate>
+	            			</with>
+	      			</visibleWhen>
+	      		</command>
+	      		<command commandId="com.nomagic.magicdraw.classpath.project.RemoveMagicDrawPluginNatureCommand">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+			                			<test
+						            		forcePluginActivation="true"
+						            		property="com.nomagic.magicdraw.classpath.project.workspaceMagicDrawPluginLocation"/>
+		             			</adapt>
+		               		</iterate>
+	               		</with>
+	      			</visibleWhen>
+	      		</command>
+				<command commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationDocGenScriptsFolder">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+					            		<or>
+					            			<test
+					                     	forcePluginActivation="true"
+					                     	property="com.nomagic.magicdraw.classpath.project.workspaceDocGenScriptLocation"/>
+					            			<test
+					                     	forcePluginActivation="true"
+					                     	property="com.nomagic.magicdraw.classpath.project.otherDocGenScriptLocation"/>
+					            		</or>
+				            		</adapt>
+		            			</iterate>
+	            			</with>
+	      			</visibleWhen>
+	      		</command>
+				<command commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMDKScriptsFolder">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		            					<or>
+					            			<test
+					                     	forcePluginActivation="true"
+					                    		property="com.nomagic.magicdraw.classpath.project.workspaceMDKScriptLocation"/>
+					            			<test
+					                     	forcePluginActivation="true"
+					                     	property="com.nomagic.magicdraw.classpath.project.otherMDKScriptLocation"/>
+					            		</or>
+		            				</adapt>
+		            			</iterate>
+	            			</with>
+	      			</visibleWhen>
+	      		</command>
+				<command commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMagicDrawPluginsFolder">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+					            		<or>
+					            			<test
+					                     	forcePluginActivation="true"
+					                     	property="com.nomagic.magicdraw.classpath.project.workspaceMagicDrawPluginLocation"/>
+					            			<test
+					                     	forcePluginActivation="true"
+					                     	property="com.nomagic.magicdraw.classpath.project.otherMagicDrawPluginLocation"/>
+					            		</or>
+				            		</adapt>
+		            			</iterate>
+	            			</with>
+	      			</visibleWhen>
+	      		</command>
+				<command commandId="com.nomagic.magicdraw.classpath.MDKProject.moveToDefaultWorkspaceLocation">
+	      			<visibleWhen checkEnabled="true">
+	      				<with variable="selection">
+		            			<iterate ifEmpty="false" operator="and">
+		            				<adapt type="org.eclipse.core.resources.IProject">
+		            					<or>
+		            						<test
+						                     	forcePluginActivation="true"
+						                    		property="com.nomagic.magicdraw.classpath.project.mdDocGenScriptLocation"/>
+						            		<test
+						                     	forcePluginActivation="true"
+						                     	property="com.nomagic.magicdraw.classpath.project.otherDocGenScriptLocation"/>
+			               				<test
+						                     	forcePluginActivation="true"
+						                    		property="com.nomagic.magicdraw.classpath.project.mdMDKScriptLocation"/>
+						            		<test
+						                     	forcePluginActivation="true"
+						                     	property="com.nomagic.magicdraw.classpath.project.otherMDKScriptLocation"/>
+		            						<test
+						                     	forcePluginActivation="true"
+						                    		property="com.nomagic.magicdraw.classpath.project.mdMagicDrawPluginLocation"/>
+						            		<test
+						                     	forcePluginActivation="true"
+						                     	property="com.nomagic.magicdraw.classpath.project.otherMagicDrawPluginLocation"/>
+			      		            </or>
+		             			</adapt>
+		               		</iterate>
+	               		</with>
+	      			</visibleWhen>
+	      		</command>
+   			</menu>
+		</menuContribution>
+	</extension>
+   <extension point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="com.nomagic.magicdraw.classpath.MDProjectActionSet"
+            label="JPL MagicDraw Project Actions">
+         <menu
+               id="org.eclipse.jdt.ui.refactoring.menu"
+               label="%Refactoring.menu.label"
+               path="edit">
+            <separator name="Refactoring.menu.label= Refac&amp;tor&#x0A;reorgGroup">
+            </separator>
+         </menu>
+         <action
+               definitionId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationDocGenScriptsFolder"
+               id="com.nomagic.magicdraw.classpath.actions.Move"
+               label="Move JPL MagicDraw DocGen Script Project to MD&apos;s install.root/DocGenUserScripts folder"
+               menubarPath="org.eclipse.jdt.ui.refactoring.menu/reorgGroup"
+               class="com.nomagic.magicdraw.classpath.actions.MoveToMDInstallationDocGenScriptsFolderDelegate"
+               style="push">
+         </action>
+         <action
+               definitionId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMDKScriptsFolder"
+               id="com.nomagic.magicdraw.classpath.actions.Move"
+               label="Move JPL MagicDraw Script Project to MD&apos;s install.root/mdk.scripts folder"
+               menubarPath="org.eclipse.jdt.ui.refactoring.menu/reorgGroup"
+               class="com.nomagic.magicdraw.classpath.actions.MoveToMDInstallationMDKScriptsFolderDelegate"
+               style="push">
+         </action>
+         <action
+               definitionId="com.nomagic.magicdraw.classpath.MDKProject.moveToMDInstallationMagicDrawPluginsFolder"
+               id="com.nomagic.magicdraw.classpath.actions.Move"
+               label="Move JPL MagicDraw Script Project to MD&apos;s install.root/plugins folder"
+               menubarPath="org.eclipse.jdt.ui.refactoring.menu/reorgGroup"
+               class="com.nomagic.magicdraw.classpath.actions.MoveToMDInstallationMagicDrawPluginsFolderDelegate"
+               style="push">
+         </action>
+         <action
+               definitionId="com.nomagic.magicdraw.classpath.MDKProject.moveToDefaultWorkspaceLocation"
+               id="com.nomagic.magicdraw.classpath.actions.Move"
+               label="Move JPL MagicDraw Script Project to the default Eclipse Workspace location"
+               menubarPath="org.eclipse.jdt.ui.refactoring.menu/reorgGroup"
+               class="com.nomagic.magicdraw.classpath.actions.MoveToDefaultWorkspaceLocationDelegate"
+               style="push">
+         </action>
+      </actionSet>
+   </extension>
+   <extension point="org.eclipse.ui.startup">
+      <startup class="com.nomagic.magicdraw.classpath.ActivationTriggerDummy"/>
+   </extension>
+</plugin>
